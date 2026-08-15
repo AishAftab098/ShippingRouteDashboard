@@ -19,134 +19,466 @@ st.set_page_config(
 # ============================================================
 st.markdown("""
 <style>
-    /* Main background */
+
+    /* =========================================================
+       MAIN APP - PURE BLACK
+       ========================================================= */
+
     .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1e1b4b 100%);
-        color: #f8fafc;
+        background: #000000;
+        color: #F0FDF4;
+    }
+    /* SIDEBAR MULTISELECT FIX */
+       section[data-testid="stSidebar"] {
+       overflow: visible !important;
     }
 
-    /* Hide Streamlit default elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+        section[data-testid="stSidebar"] > div {
+        overflow: visible !important;
+    }
 
-    /* Main title card */
+        div[data-baseweb="select"] {
+         overflow: visible !important;
+        min-height: 50px !important;
+    }
+
+        div[data-baseweb="select"] [data-baseweb="tag"] {
+         margin-left: 4px !important;
+         margin-right: 4px !important;
+        white-space: nowrap !important;
+    }
+
+        div[data-baseweb="select"] > div {
+        padding-left: 8px !important;
+         padding-right: 8px !important;
+    }
+
+        div[data-baseweb="select"] input {
+         margin-left: 4px !important;
+    }
+
+        section[data-testid="stSidebar"] * {
+        box-sizing: border-box;
+    }
+    #MainMenu {
+        visibility: hidden;
+    }
+
+    footer {
+        visibility: hidden;
+    }
+
+
+
+    /* =========================================================
+       HERO CARD
+       ========================================================= */
+
     .hero-card {
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(236, 72, 153, 0.88));
+        background: linear-gradient(
+            135deg,
+            #020403 0%,
+            #032E1F 55%,
+            #064E3B 100%
+        );
+
         padding: 34px 38px;
         border-radius: 28px;
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+        border: 1px solid rgba(16, 185, 129, 0.35);
+
+        box-shadow:
+            0 18px 45px rgba(0, 0, 0, 0.75),
+            0 0 30px rgba(16, 185, 129, 0.08);
+
         margin-bottom: 28px;
-        border: 1px solid rgba(255,255,255,0.18);
     }
+
+
     .hero-title {
-        font-size: 44px;
-        font-weight: 900;
-        color: white;
-        margin-bottom: 8px;
-        letter-spacing: -0.04em;
-    }
-    .hero-subtitle {
-        font-size: 18px;
-        color: #fdf2f8;
-        max-width: 920px;
-        line-height: 1.55;
-    }
-
-    /* Section heading */
-    .section-title {
-        font-size: 25px;
-        font-weight: 800;
-        color: #f8fafc;
-        margin-top: 10px;
+        font-size: 48px !important;
+        font-weight: 900 !important;
+        color: #F8FAFC !important;
         margin-bottom: 12px;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
     }
 
-    /* KPI cards */
+
+    .hero-subtitle {
+        font-size: 19px !important;
+        color: #A7F3D0 !important;
+        max-width: 1050px;
+        line-height: 1.15;
+    }
+
+
+    /* =========================================================
+       SECTION HEADINGS
+       ========================================================= */
+
+    .section-title {
+        font-size: 28px !important;
+        font-weight: 900 !important;
+        color: #00E676 !important;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+
+    /* =========================================================
+       KPI CARDS
+       ========================================================= */
+
     .kpi-card {
-        background: rgba(15, 23, 42, 0.88);
-        border: 1px solid rgba(148, 163, 184, 0.20);
-        border-radius: 22px;
-        padding: 22px 18px;
-        box-shadow: 0 14px 32px rgba(0,0,0,0.28);
-        min-height: 138px;
-    }
-    .kpi-label {
-        font-size: 13px;
-        color: #cbd5e1;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-    .kpi-value {
-        font-size: 30px;
-        color: #ffffff;
-        font-weight: 900;
-        margin-bottom: 4px;
-    }
-    .kpi-note {
-        font-size: 12px;
-        color: #94a3b8;
+        background: linear-gradient(
+            145deg,
+            #050806,
+            #0A0f0C
+        );
+
+        border: 1px solid rgba(16, 185, 129, 0.35);
+
+        border-radius: 20px;
+        padding: 24px 20px;
+
+        box-shadow:
+            0 12px 30px rgba(0,0,0,0.7),
+            0 0 18px rgba(16,185,129,0.08);
+
+        min-height: 155px;
+
+        transition: all 0.2s ease;
     }
 
-    /* Insight cards */
+
+    .kpi-card:hover {
+        border-color: #10B981;
+
+        box-shadow:
+            0 12px 30px rgba(0,0,0,0.7),
+            0 0 20px rgba(16,185,129,0.15);
+    }
+
+
+    .kpi-label {
+        font-size: 14px !important;
+        color: #6EE7B7 !important;
+
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+
+    .kpi-value {
+        font-size: 34px !important;
+        color: #F0FDF4 !important;
+
+        font-weight: 900 !important;
+
+        line-height: 1.15;
+
+        margin-bottom: 7px;
+    }
+    
+    .kpi-icon {
+        width: 60px !important;
+        height: 60px !important;
+        min-width: 60px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+            circle,
+            #075E45 0%,
+            #022C22 70%
+       );
+
+       border: 1px solid rgba(52, 211, 153, 0.55);
+
+       font-size: 32px !important;
+
+       line-height: 1;
+
+       box-shadow:
+           0 0 20px rgba(16, 185, 129, 0.22);
+  }
+
+
+    .kpi-note {
+        font-size: 13px !important;
+        color: #94A3B8 !important;
+    }
+
+
+    /* =========================================================
+       INSIGHT CARDS
+       ========================================================= */
+
     .insight-card {
-        background: rgba(30, 41, 59, 0.86);
-        border: 1px solid rgba(255,255,255,0.10);
+        background: #070A08;
+
+        border: 1px solid rgba(16,185,129,0.22);
+
         border-radius: 20px;
         padding: 20px 22px;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.24);
+
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+
         margin-bottom: 14px;
     }
+
+
     .insight-card h4 {
-        color: #ffffff;
+        color: #6EE7B7;
         margin-bottom: 8px;
     }
-    .insight-card p, .insight-card li {
-        color: #dbeafe;
+
+
+    .insight-card p,
+    .insight-card li {
+        color: #D1FAE5;
         font-size: 15px;
         line-height: 1.55;
     }
 
-    /* Sidebar */
+
+    /* =========================================================
+       SIDEBAR - DARK EMERALD
+       ========================================================= */
+
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #020617 0%, #111827 100%);
-        border-right: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(
+            180deg,
+            #011C14 0%,
+            #022C22 45%,
+            #064E3B 100%
+        ) !important;
+
+        border-right: 2px solid #10B981 !important;
+
+        box-shadow:
+            5px 0 25px rgba(0, 0, 0, 0.65),
+            0 0 25px rgba(16,185,129,0.10);
+
+        z-index: 999999 !important;    
     }
+
+    /* Sidebar scrolling/content area */
+
+    section[data-testid="stSidebar"] > div {
+        padding-top: 1rem !important;
+    }
+
+    section[data-testid="stSidebar"] {
+        min-width: 300px !important;
+        max-width: 300px !important;
+    }
+
+    /* Main sidebar content */
+
+    div[data-testid="stSidebarContent"] {
+        padding-top: 1.5rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Sidebar content width */
+
+    section[data-testid="stSidebar"] > div {
+        width: 300px !important;
+       
+    }
+
+    /*  Sidebar text */
     section[data-testid="stSidebar"] * {
-        color: #f8fafc !important;
+        color: #ECFDF5 !important;
     }
 
-    /* Streamlit metric styling */
+
+    /* Sidebar headings */
+
+    section[data-testid="stSidebar"] h2 {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+
+        color: #A7F3D0 !important;
+
+        font-size: 22px !important;
+        font-weight: 900 !important;
+
+        line-height: 1.3 !important;
+    }
+
+    /* Main sidebar content */
+
+    div[data-testid="stSidebarContent"] {
+        padding-top: 1.5rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Sidebar description */
+
+    section[data-testid="stSidebar"] .stCaption {
+        color: #D1FAE5 !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+
+    /* =========================================================
+       SIDEBAR SELECT / MULTISELECT
+       ========================================================= */
+
+    section[data-testid="stSidebar"]
+    div[data-baseweb="select"] > div {
+
+        background-color: #031C16 !important;
+
+        border: 1px solid rgba(110,231,183,0.28) !important;
+
+        border-radius: 10px !important;
+    }
+
+
+    /* Selected filter tags */
+
+    section[data-testid="stSidebar"]
+    span[data-baseweb="tag"] {
+
+        background-color: #10B981 !important;
+
+        color: #001B12 !important;
+
+        border-radius: 7px !important;
+    }
+
+
+    /* Date input */
+
+    section[data-testid="stSidebar"] input {
+
+        background-color: #031C16 !important;
+
+        color: #ECFDF5 !important;
+
+        border: 1px solid rgba(110,231,183,0.28) !important;
+    }
+
+
+    /* =========================================================
+       SLIDER
+       ========================================================= */
+
+    section[data-testid="stSidebar"]
+    div[data-baseweb="slider"] {
+
+        color: #10B981 !important;
+    }
+
+
+    /* =========================================================
+       METRIC COMPONENT
+       ========================================================= */
+
     div[data-testid="stMetric"] {
-        background: rgba(15,23,42,0.82);
+
+        background: #080A09;
+
         border-radius: 18px;
+
         padding: 16px;
-        border: 1px solid rgba(148,163,184,0.18);
+
+        border: 1px solid rgba(16,185,129,0.22);
     }
 
-    /* Tabs */
+
+    /* =========================================================
+       TABS
+       ========================================================= */
+
     button[data-baseweb="tab"] {
+
         font-weight: 700;
+
         border-radius: 14px 14px 0 0;
+
+        color: #94A3B8;
     }
 
-    /* Dataframes */
+
+    button[data-baseweb="tab"][aria-selected="true"] {
+
+        color: #00E676;
+
+        border-bottom: 2px solid #00E676;
+    }
+
+
+    /* =========================================================
+       DATAFRAMES
+       ========================================================= */
+
     .stDataFrame {
+
         border-radius: 18px;
+
         overflow: hidden;
+
+        border: 1px solid rgba(16,185,129,0.18);
     }
 
-    /* Buttons */
-    .stButton > button, .stDownloadButton > button {
-        border-radius: 14px;
-        border: 0;
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+
+    .stButton > button,
+    .stDownloadButton > button {
+
+        border-radius: 12px;
+
+        border: 1px solid #10B981;
+
         font-weight: 800;
-        background: linear-gradient(135deg, #7c3aed, #ec4899);
+
+        background: linear-gradient(
+            135deg,
+            #064E3B,
+            #059669
+        );
+
         color: white;
+
         padding: 0.7rem 1.1rem;
+
+        box-shadow:
+            0 0 12px rgba(16,185,129,0.10);
     }
+
+
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+
+        background: linear-gradient(
+            135deg,
+            #059669,
+            #10B981
+        );
+
+        border-color: #34D399;
+
+        box-shadow:
+            0 0 20px rgba(16,185,129,0.25);
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -204,28 +536,64 @@ def pct(value):
     return f"{value:.1f}%"
 
 
-def kpi_card(label, value, note=""):
+def kpi_card(label, value, note="", icon="📊"):
     st.markdown(f"""
     <div class="kpi-card">
-        <div class="kpi-label">{label}</div>
+        <div class="kpi-header">
+            <div class="kpi-icon">{icon}</div>
+            <div class="kpi-label">{label}</div>
+        </div>
         <div class="kpi-value">{value}</div>
         <div class="kpi-note">{note}</div>
     </div>
     """, unsafe_allow_html=True)
 
-
 def apply_chart_style(fig, height=430):
+
     fig.update_layout(
         height=height,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(15,23,42,0.35)",
-        font=dict(color="#e5e7eb", family="Arial"),
-        title=dict(font=dict(size=20, color="#ffffff")),
-        margin=dict(l=25, r=25, t=60, b=25),
-        legend=dict(bgcolor="rgba(0,0,0,0)")
+
+        paper_bgcolor="#000000",
+
+        plot_bgcolor="#050807",
+
+        font=dict(
+            color="#E2E8F0",
+            family="Arial"
+        ),
+
+        title=dict(
+            font=dict(
+                size=20,
+                color="#F8FAFC"
+            )
+        ),
+
+        margin=dict(
+            l=25,
+            r=25,
+            t=60,
+            b=25
+        ),
+
+        legend=dict(
+            bgcolor="rgba(0,0,0,0)",
+            font=dict(
+                color="#D1FAE5"
+            )
+        )
     )
-    fig.update_xaxes(gridcolor="rgba(148,163,184,0.18)", zerolinecolor="rgba(148,163,184,0.18)")
-    fig.update_yaxes(gridcolor="rgba(148,163,184,0.18)", zerolinecolor="rgba(148,163,184,0.18)")
+
+    fig.update_xaxes(
+        gridcolor="rgba(110,231,183,0.12)",
+        zerolinecolor="rgba(110,231,183,0.20)"
+    )
+
+    fig.update_yaxes(
+        gridcolor="rgba(110,231,183,0.12)",
+        zerolinecolor="rgba(110,231,183,0.20)"
+    )
+
     return fig
 
 
@@ -269,7 +637,7 @@ if df.empty:
 # ============================================================
 st.markdown("""
 <div class="hero-card">
-    <div class="hero-title">🍬 Nassau Candy Shipping Analytics</div>
+    <div class="hero-title"> 🚚Nassau Candy Shipping Analytics</div>
     <div class="hero-subtitle">
         Factory-to-customer route efficiency dashboard for analyzing shipment delays, lead time performance,
         geographic bottlenecks, ship mode tradeoffs, sales impact, and logistics improvement opportunities.
@@ -280,7 +648,7 @@ st.markdown("""
 # ============================================================
 # SIDEBAR FILTERS
 # ============================================================
-st.sidebar.markdown("## 🎛️ Dashboard Filters")
+st.sidebar.markdown("## 🎛️ Nassau Candy Shipping Analytics")
 st.sidebar.caption("Use these filters to explore shipment performance by date, region, division, state, and shipping mode.")
 
 min_date = df["Order Date"].min().date()
@@ -371,17 +739,17 @@ st.markdown('<div class="section-title">📊 Executive KPI Overview</div>', unsa
 
 k1, k2, k3, k4, k5, k6 = st.columns(6)
 with k1:
-    kpi_card("Shipments", f"{total_shipments:,}", "Filtered records")
+    kpi_card("Shipments", f"{total_shipments:,}", "Filtered records", "📦")
 with k2:
-    kpi_card("Avg Lead Time", f"{avg_lead_time:.1f}d", f"Median: {median_lead_time:.1f}d")
+    kpi_card("Avg Lead Time", f"{avg_lead_time:.1f}d", f"Median: {median_lead_time:.1f}d", "⏱️")
 with k3:
-    kpi_card("Delay Rate", pct(delay_rate), f"> {delay_threshold} days")
+    kpi_card("Delay Rate", pct(delay_rate), f"> {delay_threshold} days", "⚠️")
 with k4:
-    kpi_card("Total Sales", money(total_sales), "Revenue impact")
+    kpi_card("Total Sales", money(total_sales), "Revenue impact", "💰")
 with k5:
-    kpi_card("Gross Profit", money(total_profit), f"Margin: {profit_margin:.1f}%")
+    kpi_card("Gross Profit", money(total_profit), f"Margin: {profit_margin:.1f}%", "📈")
 with k6:
-    kpi_card("Efficiency", pct(efficiency_score), f"{unique_routes} routes")
+    kpi_card("Efficiency", pct(efficiency_score), f"{unique_routes} routes", "🎯")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -494,6 +862,21 @@ with tab1:
             title="Monthly Average Lead Time Trend",
             labels={"Avg_Lead_Time": "Avg Lead Time Days", "Month": "Order Month"}
         )
+
+        fig.update_traces(
+            line=dict(
+                color="#00E676",
+                width=3
+          ),
+            marker=dict(
+                size=8,
+                color="#A3E635",
+                line=dict(
+                    color="#050807",
+                    width=2
+                )
+            )
+        )
         fig.add_hline(
             y=delay_threshold,
             line_dash="dash",
@@ -508,7 +891,12 @@ with tab1:
             values="Sales",
             hole=0.55,
             title="Sales Contribution by Region",
-            color_discrete_sequence=px.colors.qualitative.Set3
+            color_discrete_sequence=[
+                "#00E676",
+                "#22D3EE",
+                "#A3E635",
+                "#FACC15"
+            ]
         )
         fig.update_traces(textposition="inside", textinfo="percent+label")
         st.plotly_chart(apply_chart_style(fig, 420), use_container_width=True)
@@ -523,7 +911,13 @@ with tab1:
             orientation="h",
             title="Top 10 Products by Sales",
             color="Sales",
-            color_continuous_scale="Plasma"
+            color_continuous_scale=[
+                [0.00, "#064E3B"],
+                [0.25, "#059669"],
+                [0.50, "#10B981"],
+                [0.75, "#6EE7B7"],
+                [1.00, "#D9F99D"]
+            ]
         )
         fig.update_layout(yaxis={"categoryorder": "total ascending"})
         st.plotly_chart(apply_chart_style(fig, 450), use_container_width=True)
@@ -535,7 +929,7 @@ with tab1:
             nbins=25,
             title="Lead Time Distribution",
             labels={"Lead Time": "Lead Time Days"},
-            color_discrete_sequence=["#a855f7"]
+            color_discrete_sequence=["#22D3EE"]
         )
         fig.add_vline(x=delay_threshold, line_dash="dash", annotation_text="Delay Threshold")
         st.plotly_chart(apply_chart_style(fig, 450), use_container_width=True)
@@ -571,7 +965,13 @@ with tab2:
             y="Route",
             orientation="h",
             color="Delay Rate",
-            color_continuous_scale="Reds",
+            color_continuous_scale=[
+                [0.00, "#064E3B"],
+                [0.35, "#10B981"],
+                [0.65, "#FACC15"],
+                [0.82, "#FB923C"],
+                [1.00, "#EF4444"]
+           ],
             title="Highest Delay Rate Routes"
         )
         fig.update_layout(yaxis={"categoryorder": "total ascending"})
@@ -585,7 +985,13 @@ with tab2:
             size="Sales",
             color="Delay Rate",
             hover_name="Route",
-            color_continuous_scale="Plasma",
+            color_continuous_scale=[
+                [0.00, "#064E3B"],
+                [0.30, "#10B981"],
+                [0.60, "#22D3EE"],
+                [0.80, "#A3E635"],
+                [1.00, "#FACC15"]
+          ],
             title="Route Volume vs Lead Time"
         )
         fig.add_hline(y=delay_threshold, line_dash="dash", annotation_text="Delay Threshold")
@@ -617,7 +1023,13 @@ with tab3:
             "Sales": ":,.0f",
             "State Code": False
         },
-        color_continuous_scale="Plasma",
+        color_continuous_scale=[
+            [0.00, "#021C0D"],
+            [0.25, "#064E3B"],
+            [0.50, "#10B981"],
+            [0.75, "#4ADE80"],
+            [1.00, "#D9F99D"]
+     ],
         title=f"US State-Level Shipping Performance: {map_metric}"
     )
 
@@ -723,7 +1135,13 @@ with tab5:
             y="State/Province",
             orientation="h",
             color="Bottleneck Score",
-            color_continuous_scale="Magma",
+            color_continuous_scale=[
+                [0.00, "#064E3B"],
+                [0.40, "#10B981"],
+                [0.65, "#FACC15"],
+                [0.82, "#FB923C"],
+                [1.00, "#EF4444"]
+           ],
             title="Top Bottleneck States"
         )
         fig.update_layout(yaxis={"categoryorder": "total ascending"})
