@@ -1235,3 +1235,4 @@ with tab6:
     st.markdown("#### Factory Performance Table")
     st.dataframe(factory_stats, use_container_width=True, hide_index=True)
 
+# Deployment update - latest dashboard version
